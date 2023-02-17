@@ -79,9 +79,9 @@ WSGI_APPLICATION = "LibraryService.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "postgres",
+        "NAME": "library_db",
         "USER": "postgres",
-        "PASSWORD": "postgres",
+        "PASSWORD": "qwerty",
         "HOST": "localhost",
         "PORT": "5432",
 

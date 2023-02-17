@@ -5,7 +5,7 @@ class Author(models.Model):
     firstname = models.CharField(max_length=30, verbose_name='Имя автора')
     lastname = models.CharField(max_length=30, verbose_name='Фамилия автора')
     img = models.ImageField(upload_to='image/', blank=True, verbose_name='Фото автора')
-    date_of_created = models.DateField(auto_now_add=True, editable=True, verbose_name='Дата создания')
+    date_of_created = models.DateField(auto_now_add=True, verbose_name='Дата создания')
     date_edited = models.DateField(auto_now=True, verbose_name='Дата редактирования')
 
     class Meta:
@@ -20,11 +20,11 @@ class Author(models.Model):
 class Books(models.Model):
     name = models.CharField(max_length=50, verbose_name='Название')
     description = models.TextField(max_length=2000, verbose_name='Описание')
-    number_of_pages = models.PositiveIntegerField(blank=True, verbose_name='Количество страниц', editable=True)
-    number_of_books = models.PositiveIntegerField(blank=True, verbose_name='Количество книг', editable=True)
+    number_of_pages = models.PositiveIntegerField(verbose_name='Количество страниц')
+    number_of_books = models.PositiveIntegerField(verbose_name='Количество книг')
     date_of_created = models.DateField(auto_now_add=True, editable=True, verbose_name='Дата создания')
     date_edited = models.DateField(auto_now=True, verbose_name='Дата редактирования')
-    author = models.ManyToManyField(Author)
+    authors = models.ManyToManyField(Author, related_name='author', blank=True)
 
     class Meta:
         verbose_name = 'Книга'
@@ -40,7 +40,7 @@ class Reader(models.Model):
     lastname = models.CharField(max_length=30, verbose_name='Фамилия читателя')
     phone = models.BigIntegerField(verbose_name='Номер телефона')
     status_reader = models.BooleanField(default=True)
-    active_books = models.ManyToManyField(Books)
+    active_books = models.ManyToManyField(Books, related_name='books', blank=True)
 
     class Meta:
         verbose_name = 'Читатель'
