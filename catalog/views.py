@@ -1,10 +1,7 @@
-from rest_framework.generics import ListAPIView, RetrieveAPIView, CreateAPIView, RetrieveDestroyAPIView, \
-    RetrieveUpdateDestroyAPIView
 from rest_framework.viewsets import ModelViewSet
 
 from catalog.models import Author, Books, Reader
-from catalog.serializers import AuthorViewSetSerializer, BooksListSerializer, \
-    BooksCreateSerializer, BooksRetrieveUpdateDestroySerializer, ReaderViewSetSerializer
+from catalog.serializers import AuthorViewSetSerializer, ReaderViewSetSerializer, BookViewSetSerializer
 
 
 class AuthorViewSet(ModelViewSet):
@@ -17,16 +14,8 @@ class ReaderViewSet(ModelViewSet):
     serializer_class = ReaderViewSetSerializer
 
 
-class BooksListView(ListAPIView):
+class BookViewSet(ModelViewSet):
     queryset = Books.objects.all()
-    serializer_class = BooksListSerializer
+    serializer_class = BookViewSetSerializer
 
 
-class BooksRetrieveView(RetrieveUpdateDestroyAPIView):
-    queryset = Books.objects.all()
-    serializer_class = BooksRetrieveUpdateDestroySerializer
-
-
-class BooksCreateView(CreateAPIView):
-    queryset = Books.objects.all()
-    serializer_class = BooksCreateSerializer

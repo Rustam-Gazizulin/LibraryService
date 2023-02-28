@@ -15,19 +15,19 @@ Including another URLconf
 """
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
 from rest_framework import routers
 
 from LibraryService import settings
-from catalog.views import AuthorViewSet, ReaderViewSet
+from catalog.views import AuthorViewSet, ReaderViewSet, BookViewSet
 
 router = routers.SimpleRouter()
 router.register('author', AuthorViewSet)
 router.register('reader', ReaderViewSet)
+router.register('book', BookViewSet)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("books/", include('catalog.urls_books')),
 ]
 urlpatterns += router.urls
 
