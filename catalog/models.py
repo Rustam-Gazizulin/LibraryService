@@ -13,6 +13,10 @@ class Author(models.Model):
         verbose_name_plural = 'Авторы'
         ordering = ['lastname']
 
+    @property
+    def full_name(self):
+        return f'{self.firstname} {self.lastname}'
+
     def __str__(self):
         return f'{self.firstname} {self.lastname}'
 
