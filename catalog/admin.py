@@ -27,19 +27,18 @@ class BookAdmin(admin.ModelAdmin):
 class ReaderAdmin(admin.ModelAdmin):
     list_display = ('lastname', 'phone', 'status_reader', 'display_books')
     list_filter = ('status_reader',)
-    actions = ['change_status_reader']
+    actions = ['change_status_reader', 'delete_all_books']
 
     @admin.action(description='Изменить статус читателя')
     def change_status_reader(self, request, queryset: QuerySet):
         count = queryset.update(status_reader=False)
         self.message_user(request, f'Заблокировано {count} читателей')
 
-    # @admin.action(description='Удалить книги у читателя')
-    # def zero_active_books(self, request, queryset: QuerySet):
-    #     books = Books.objects.all()
-    #     for book in books:
-    #         queryset.delete(Reader.active_books[book])
-    #     self.message_user(request, f'У читателей нет книг')
+    @admin.action(description='Удалить книги у читателя')
+    def delete_all_books(self, request, queryset):
+        for obj in queryset:
+            obj.active_books.clear()
+        self.message_user(request, f'Книги удалены')
 
 
 class AuthorAdmin(admin.ModelAdmin):
