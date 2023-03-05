@@ -57,7 +57,7 @@ class ReaderViewSetSerializer(serializers.ModelSerializer):
 
 
 class BookViewSetSerializer(serializers.ModelSerializer):
-    authors = serializers.SlugRelatedField(queryset=Author.objects.all(), slug_field='full_name')
+    authors = serializers.SlugRelatedField(queryset=Author.objects.all(), slug_field='lastname')
 
     number_of_pages = serializers.IntegerField(validators=[NumbersPageValidator()])
 
