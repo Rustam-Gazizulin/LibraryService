@@ -54,6 +54,10 @@ class ReaderViewSetSerializer(serializers.ModelSerializer):
                     book.number_of_books += 1
                     book.save()
             return super().update(instance, validated_data)
+        else:
+            return super().update(instance, validated_data)
+
+
 
 
 class BookViewSetSerializer(serializers.ModelSerializer):
