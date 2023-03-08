@@ -58,8 +58,6 @@ class ReaderViewSetSerializer(serializers.ModelSerializer):
             return super().update(instance, validated_data)
 
 
-
-
 class BookViewSetSerializer(serializers.ModelSerializer):
     authors = serializers.SlugRelatedField(queryset=Author.objects.all(), slug_field='lastname')
 
