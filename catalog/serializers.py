@@ -28,6 +28,11 @@ class ReaderViewSetSerializer(serializers.ModelSerializer):
         return attrs
 
     def create(self, validated_data):
+        if validated_data['active_books']:
+            for book in validated_data['active_books']:
+                if book.number_of_books == 0:
+                    raise serializers.ValidationError('Нет книг невозможно создать пользователя')
+
         books_data = validated_data.pop('active_books')
         reader = Reader.objects.create(**validated_data)
         for book_data in books_data:
