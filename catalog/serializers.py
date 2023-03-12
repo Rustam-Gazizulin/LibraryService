@@ -43,6 +43,8 @@ class ReaderViewSetSerializer(serializers.ModelSerializer):
                 reader.active_books.add(book)
             else:
                 raise serializers.ValidationError(f"Книги {book.name} нет в наличии")
+        reader.set_password(reader.password)
+        reader.save()
         return reader
 
     def update(self, instance, validated_data):

@@ -20,6 +20,7 @@ from rest_framework import routers
 
 from LibraryService import settings
 from catalog.views import AuthorViewSet, ReaderViewSet, BookViewSet
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 router = routers.SimpleRouter()
 router.register('author', AuthorViewSet)
@@ -28,6 +29,8 @@ router.register('book', BookViewSet)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("token/", TokenObtainPairView.as_view()),
+    path("token/refresh/", TokenRefreshView.as_view()),
 ]
 urlpatterns += router.urls
 

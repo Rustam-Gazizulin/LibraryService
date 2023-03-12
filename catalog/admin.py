@@ -25,7 +25,7 @@ class BookAdmin(admin.ModelAdmin):
 
 
 class ReaderAdmin(admin.ModelAdmin):
-    list_display = ('lastname', 'phone', 'status_reader', 'display_books')
+    list_display = ('username', 'last_name', 'phone', 'status_reader', 'display_books')
     list_filter = ('status_reader',)
     actions = ['change_status_reader', 'delete_all_books']
 
