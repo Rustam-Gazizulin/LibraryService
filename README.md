@@ -10,3 +10,13 @@
 pip install -r requirements.txt
 python manage.py migrate
 python manage.py runserver
+
+
+## Пользователи
+
+"username": "admin",
+"password": "admin"
+
+
+"username": "user1",
+"password": "user1
